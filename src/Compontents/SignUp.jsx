@@ -25,7 +25,7 @@ const SignUp = () => {
           console.log(values);
         }}
       >
-        <div className="flex flex-col gap-y-1 mb-3">
+        <div className="flex flex-col gap-y-1 mb-3 w-full">
           <label htmlFor="fullname">Fullname</label>
           <input
             type="text"
@@ -33,10 +33,10 @@ const SignUp = () => {
             onChange={handleOnChange}
             values={values.fullname}
             placeholder="Fullname"
-            className="input w-full text-base font-normal border"
+            className=" w-full text-base font-normal border pl-3 h-8 py-1 rounded-xl "
           />
         </div>
-        <div className="flex flex-col gap-y-1 mb-3">
+        <div className="flex flex-col gap-y-1 mb-3 w-full">
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -44,10 +44,10 @@ const SignUp = () => {
             onChange={handleOnChange}
             values={values.username}
             placeholder="Password"
-            className="input w-full text-base font-normal border"
+            className=" w-full text-base font-normal border pl-3 h-8 py-1 rounded-xl "
           />
         </div>
-        <div className="flex flex-col gap-y-1 mb-3">
+        <div className="flex flex-col gap-y-1 mb-3 w-full">
           <label htmlFor="password">Password</label>
           <input
             type="text"
@@ -55,11 +55,11 @@ const SignUp = () => {
             onChange={handleOnChange}
             values={values.password}
             placeholder="Password"
-            className="input w-full text-base font-normal border"
+            className=" w-full text-base font-normal border pl-3 h-8 py-1 rounded-xl "
           />
         </div>
         <button
-          className="btn block bg-blue-400 rounded-xl text-white py-2 px-5"
+          className="btn block bg-blue-400 rounded-xl text-white py-2 px-5 active:scale-95 transition-all"
           type="submit"
         >
           SignUp
