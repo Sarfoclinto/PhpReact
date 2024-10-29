@@ -50,7 +50,7 @@ const SignIn = () => {
           className="btn block bg-blue-400 rounded-xl text-white py-2 px-5 active:scale-95 transition-all"
           type="submit"
         >
-          SignUp
+          Login
         </button>
       </form>
     </div>
