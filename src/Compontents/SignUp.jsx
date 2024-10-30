@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 const SignUp = () => {
@@ -16,14 +17,31 @@ const SignUp = () => {
       };
     });
   };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    console.log(values);
+  
+    const formData = {
+      fullname: values.fullname,
+      username: values.username,
+      password: values.password
+    };
+  
+    try {
+      const response = await axios.post("http://localhost/react/PhpReact/PHP/signup.php", formData);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
   return (
     <div className="w-full h-full flex items-center justify-center text-xl font-bold">
       <form
         className="w-2/3 h-2/3 flex items-center justify-center flex-col"
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(values);
-        }}
+        onSubmit={handleFormSubmit}
       >
         <div className="flex flex-col gap-y-1 mb-3 w-full">
           <label htmlFor="fullname">Fullname</label>
@@ -43,7 +61,7 @@ const SignUp = () => {
             name="username"
             onChange={handleOnChange}
             values={values.username}
-            placeholder="Password"
+            placeholder="Username"
             className=" w-full text-base font-normal border pl-3 h-8 py-1 rounded-xl "
           />
         </div>
