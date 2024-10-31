@@ -24,27 +24,26 @@ const SignUp = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log(values);
-  
+
     const formData = {
       fullname: values.fullname,
       username: values.username,
-      password: values.password
+      password: values.password,
     };
-  
 
     try {
-      const response = await axios.post("http://localhost/react/PhpReact/PHP/signup.php", formData);
+      const response = await axios.post(
+        "http://localhost/react/PhpReact/PHP/signup.php",
+        formData
+      );
       console.log(response);
-      if(response.data.redirect){
-
+      if (response.data.redirect) {
         navigate(response.data.redirect);
-
-      }      
+      }
     } catch (error) {
       console.error(error);
     }
   };
-  
 
   return (
     <div className="w-full h-full flex items-center justify-center text-xl font-bold">

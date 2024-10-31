@@ -52,7 +52,7 @@ const SignIn = () => {
             name="username"
             onChange={handleOnChange}
             values={values.username}
-            placeholder="Password"
+            placeholder="Username"
             className=" w-full text-base font-normal border pl-3 h-8 py-1 rounded-xl "
           />
         </div>
