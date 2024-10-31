@@ -1,10 +1,31 @@
 import { useState } from "react";
+import axios from "axios";
 
 const SignIn = () => {
   const [values, setValues] = useState({
     username: "",
     password: "",
   });
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    console.log(values);
+
+    const formData = {
+      username: values.username,
+      password: values.password,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost/react/PhpReact/PHP/signup.php",
+        formData
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +42,7 @@ const SignIn = () => {
         className="w-2/3 h-2/3 flex items-center justify-center flex-col"
         onSubmit={(e) => {
           e.preventDefault();
-          console.log(values);
+          handleFormSubmit(e);
         }}
       >
         <div className="flex flex-col gap-y-1 mb-3 w-full">
