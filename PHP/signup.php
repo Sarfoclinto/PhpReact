@@ -45,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($results)) {
         
-        echo json_encode(['success' => 'User created successfully']);
+        echo json_encode(['success' => 'User created successfully','redirect'=>'/login']);
+
     } else {
 
         echo json_encode(['error' => 'Error creating user']);
