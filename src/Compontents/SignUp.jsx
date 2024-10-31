@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [values, setValues] = useState({
@@ -18,6 +19,8 @@ const SignUp = () => {
     });
   };
 
+  const navigate = useNavigate();
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log(values);
@@ -28,9 +31,15 @@ const SignUp = () => {
       password: values.password
     };
   
+
     try {
       const response = await axios.post("http://localhost/react/PhpReact/PHP/signup.php", formData);
       console.log(response);
+      if(response.data.redirect){
+
+        navigate(response.data.redirect);
+
+      }      
     } catch (error) {
       console.error(error);
     }
