@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $row = mysqli_fetch_assoc($results);
         
-        echo json_encode(['redirect'=>'/home','status'=>'200','data'=>array($row)]);
+        echo json_encode(['redirect'=>'/home','status'=>'200','data'=>array('fullname'=>$row['fullname'],'username'=>$row['username'])]);
         //echo json_encode(['data'=>array($row)]);
     }
   
