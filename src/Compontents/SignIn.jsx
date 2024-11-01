@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const [setIsloading] = useState(false);
+  sessionStorage.setItem("isAuthenticated", "false");
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -10,27 +12,34 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
-
+    setIsloading(true);
     const formData = {
       username: values.username,
       password: values.password,
     };
-
-    try {
-      const response = await axios.post(
-        "http://localhost/react/PhpReact/PHP/signin.php",
-        formData
-      );
-      console.log(response);
-      if (response.data.redirect) {
-        navigate(response.data.redirect);
+    setTimeout(async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost/react/PhpReact/PHP/signin.php",
+          formData
+        );
+        if (response.data.status === "200") {
+          sessionStorage.setItem("isAuthenticated", "true");
+        }
+        setIsloading(false);
+        if (response.data.redirect) {
+          alert("Login Successful");
+          setTimeout(() => {
+            navigate(response.data.redirect);
+          }, 500);
+        }
+      } catch (error) {
+        setIsloading(false);
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
+    }, 2000);
   };
 
   const handleOnChange = (e) => {
@@ -42,6 +51,7 @@ const SignIn = () => {
       };
     });
   };
+
   return (
     <div className="w-full h-full flex items-center justify-center text-xl font-bold">
       <form
