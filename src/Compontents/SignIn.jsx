@@ -1,11 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [values, setValues] = useState({
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -18,10 +21,13 @@ const SignIn = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost/react/PhpReact/PHP/signup.php",
+        "http://localhost/react/PhpReact/PHP/signin.php",
         formData
       );
       console.log(response);
+      if (response.data.redirect) {
+        navigate(response.data.redirect);
+      }
     } catch (error) {
       console.error(error);
     }
